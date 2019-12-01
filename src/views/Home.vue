@@ -1,18 +1,51 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div v-bind="getOptions()">
+    <task-list type="today">
+      <!-- <h1>{{ nameList | withoutHyphens }}</h1> -->
+      <task-item
+        v-for="item in tasks"
+        :key="`task-${item.id}`"
+        :input-data="item"
+      ></task-item>
+    </task-list>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { ComponentBuilder } from '@/mixins'
+import { List, Item } from '@/components/Task'
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapState, mapActions } = createNamespacedHelpers('task')
 
 export default {
-  name: "home",
+  name: 'HomePage',
   components: {
-    HelloWorld
-  }
-};
+    'task-list': List,
+    'task-item': Item,
+  },
+  // filters: {
+  //   withoutHyphens(value) {
+  //     return value.replace(/-/g, '')
+  //   },
+  // },
+  mixins: [ComponentBuilder],
+  data() {
+    return {
+      blockName: 'home-page',
+      nameList: null,
+    }
+  },
+  computed: {
+    ...mapState({
+      tasks: state => state.tasks,
+    }),
+  },
+  async created() {
+    await this.getTasks()
+  },
+  methods: {
+    ...mapActions(['getTasks']),
+  },
+}
 </script>
