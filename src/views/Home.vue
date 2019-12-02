@@ -1,20 +1,28 @@
 <template>
   <div v-bind="getOptions()">
-    <task-list type="today">
+    <task-list v-if="!loading" type="today">
       <!-- <h1>{{ nameList | withoutHyphens }}</h1> -->
-      <task-item
+      <error-boundary
+        name="task-item"
         v-for="item in tasks"
         :key="`task-${item.id}`"
-        :input-data="item"
-      ></task-item>
+      >
+        <task-item :input-data="item"></task-item>
+        <template #error>
+          <div>No name task</div>
+        </template>
+      </error-boundary>
     </task-list>
+    <loader-default v-else></loader-default>
   </div>
 </template>
 
 <script>
 import { ComponentBuilder } from '@/mixins'
-import { List, Item } from '@/components/Task'
 import { createNamespacedHelpers } from 'vuex'
+import { List, Item } from '@/components/Task'
+import { Default } from '@/components/Loader'
+import { Boundary } from '@/components/Error'
 
 const { mapState, mapActions } = createNamespacedHelpers('task')
 
@@ -23,6 +31,8 @@ export default {
   components: {
     'task-list': List,
     'task-item': Item,
+    'loader-default': Default,
+    'error-boundary': Boundary,
   },
   // filters: {
   //   withoutHyphens(value) {
@@ -33,19 +43,29 @@ export default {
   data() {
     return {
       blockName: 'home-page',
-      nameList: null,
+      // nameList: null,
     }
   },
   computed: {
-    ...mapState({
-      tasks: state => state.tasks,
-    }),
+    // ...mapState({
+    //   tasks: state => state.tasks,
+    // }),
+    ...mapState(['loading', 'tasks']),
   },
   async created() {
-    await this.getTasks()
+    await this.fetch()
   },
   methods: {
-    ...mapActions(['getTasks']),
+    // ...mapActions({
+    //   fetch: 'fetch'
+    // }),
+    ...mapActions(['fetch']),
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.home-page {
+  position: relative;
+}
+</style>
