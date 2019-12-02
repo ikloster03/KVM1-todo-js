@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <error-boundary name="app">
+    <!-- <error-boundary name="app"> -->
       <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/lists">Lists</router-link>
       </div>
       <router-view />
-    </error-boundary>
+    <!-- </error-boundary> -->
   </div>
 </template>
 
 <script>
 import { ComponentBuilder } from '@/mixins'
-import { Boundary } from '@/components/Error'
+// import { Boundary } from '@/components/Error'
 
 export default {
   name: 'App',
   components: {
-    'error-boundary': Boundary,
+    // 'error-boundary': Boundary,
   },
   mixins: [ComponentBuilder],
   data() {
