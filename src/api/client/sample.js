@@ -22,6 +22,7 @@ export default class TestClient extends Client {
       })
     })
   }
+
   createTask({ title }) {
     return throttling(resolve => {
       const oldId = Math.max.apply(
@@ -29,15 +30,22 @@ export default class TestClient extends Client {
         TASKS.map(task => task.id)
       )
       const newId = oldId + 1
-      TASKS.push({
-        id: newId,
-        title: title,
-        completed: false,
-        list_id: null,
-        date: new Date().toLocaleDateString(),
-      })
       resolve({
-        data: TASKS,
+        data: {
+          id: newId,
+          title: title,
+          completed: false,
+          list_id: null,
+          date: new Date().toLocaleDateString(),
+        },
+      })
+    })
+  }
+
+  deleteTask({ task }) {
+    return throttling(resolve => {
+      resolve({
+        data: task,
       })
     })
   }

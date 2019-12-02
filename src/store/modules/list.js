@@ -13,7 +13,7 @@ const getters = {
 }
 
 const actions = {
-  async getLists({ commit }) {
+  async fetch({ commit }) {
     const { data } = await service.fetch()
     commit(SET_LISTS, data)
   },

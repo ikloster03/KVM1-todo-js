@@ -2,6 +2,7 @@ import DebugLogger from './debug'
 import { DEBUG, ERROR } from './levels'
 
 const errorLog = (from, data) => {
+  console.log('errorLOg')
   const debug = process.env.NODE_ENV !== 'production'
   const debugLogger = new DebugLogger(from, data)
 
