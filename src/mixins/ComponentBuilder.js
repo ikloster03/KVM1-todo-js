@@ -52,7 +52,7 @@ export default {
         [`class`]: this.getClasses(),
         [`id`]: `${this.getBlock}-${this.name}`,
         [`data-name`]: `${this.getBlock}-${this.name}`,
-        [`role`]: `${this.componentName}`,
+        [`role`]: `${this.blockName}`,
         [`aria-label`]: `${this.description}`,
       }
     },
