@@ -1,6 +1,6 @@
 <template>
   <div v-bind="getOptions()">
-    <div :class="`${getBlock}__title`">{{ inputData.title.dd.dd }}</div>
+    <div :class="`${getBlock}__title`">{{ inputData.title }}</div>
   </div>
 </template>
 
