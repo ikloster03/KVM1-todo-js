@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <!-- <error-boundary name="app"> -->
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/lists">Lists</router-link>
-      </div>
-      <router-view />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/lists">Lists</router-link>
+    </div>
+    <router-view />
     <!-- </error-boundary> -->
   </div>
 </template>

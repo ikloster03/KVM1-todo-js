@@ -3,9 +3,9 @@
     <task-list v-if="!loading" type="today">
       <!-- <h1>{{ nameList | withoutHyphens }}</h1> -->
       <error-boundary
-        name="task-item"
         v-for="item in tasks"
         :key="`task-${item.id}`"
+        name="task-item"
       >
         <task-item :input-data="item"></task-item>
         <template #error>
