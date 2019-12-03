@@ -6,7 +6,7 @@ export default class AxiosProvider extends Provider {
     super(rootURL)
   }
 
-  fetch(params) {
-    return axios.get(`${this.rootURL}/api/data`, { params: params })
+  fetchTasks() {
+    return axios.get(`${this.rootURL}/api/data`)
   }
 }

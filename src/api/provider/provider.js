@@ -3,5 +3,7 @@ export default class Provider {
     this.rootURL = rootURL
   }
 
-  fetch() {}
+  fetchTasks() {
+    return fetch(`${this.rootURL}/api/data`)
+  }
 }
