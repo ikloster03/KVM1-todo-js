@@ -1,7 +1,7 @@
 import axios from 'axios'
-import Client from './client'
+import Provider from './provider'
 
-export default class AxiosClient extends Client {
+export default class AxiosProvider extends Provider {
   constructor(rootURL) {
     super(rootURL)
   }

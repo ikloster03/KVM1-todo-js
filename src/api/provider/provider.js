@@ -1,4 +1,4 @@
-export default class Client {
+export default class Provider {
   constructor(rootURL) {
     this.rootURL = rootURL
   }

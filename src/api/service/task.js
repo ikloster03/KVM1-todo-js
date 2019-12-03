@@ -1,10 +1,10 @@
 import Service from './service'
-import SampleClient from '@/api/client/sample'
+import SampleProvider from '@/api/provider/sample'
 
 export default class TaskService extends Service {
   constructor(rootURL) {
     super()
-    this.service = new SampleClient(rootURL)
+    this.service = new SampleProvider(rootURL)
   }
 
   fetch() {

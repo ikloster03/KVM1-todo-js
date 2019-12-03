@@ -1,4 +1,4 @@
-import Client from './client'
+import Provider from './provider'
 import { LISTS, TASKS } from '../sample/data'
 
 const TIMEOUT = 2000
@@ -10,7 +10,7 @@ const throttling = cb =>
     }, TIMEOUT)
   })
 
-export default class TestClient extends Client {
+export default class TestProvider extends Provider {
   constructor(rootURL) {
     super(rootURL)
   }
